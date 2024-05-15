@@ -1,0 +1,38 @@
+<main class="contenedor contenedor-formularios">
+    <h1><%= pageName %></h1>
+
+    <form action="/create-account" method="POST" class="default-form">
+        <div class="campo">
+            <label>Correo Electrónico</label>
+            <input type="email" name="email" placeholder="Tu Email">
+        </div>
+        <div class="campo">
+            <label>Nombre</label>
+            <input type="text" name="name" placeholder="Tu Nombre">
+        </div>
+        <div class="campo">
+            <label>Contraseña</label>
+            <input type="password" name="password" placeholder="Tu Contraseña">
+        </div>
+        <div class="campo">
+            <label>Repetir Contraseña</label>
+            <input type="password" name="confirm" placeholder="Repite tu Contraseña">
+        </div>
+        <div class="campo">
+            <label>Preferencias</label>
+            <div class="checkboxes">
+                <input type="checkbox" name="preferences" value="cine">
+                <label for="cine">Cine</label>
+                <input type="checkbox" name="preferences" value="teatro">
+                <label for="teatro">Teatro</label>
+                <input type="checkbox" name="preferences" value="musica">
+                <label for="musica">Música</label>
+                <input type="checkbox" name="preferences" value="conversatorios">
+                <label for="conversatorios">Conversatorios</label>
+            </div>
+        </div>
+        <div class="campo enviar">
+            <input type="submit" class="btn btn-rosa" value="Crear Cuenta">
+        </div>
+    </form>
+</main>

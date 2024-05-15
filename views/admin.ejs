@@ -1,0 +1,88 @@
+<main class="contenedor panel-administracion">
+    <h1><%= pageName %></h1>
+
+    <div class="contenedor-botones">
+        <a href="/new-group" class="btn btn-amarillo">Nuevo Grupo</a>
+        <a href="/new-event" class="btn btn-azul">Nuevo Evento</a>
+        <a href="/edit-profile" class="btn btn-rosa">Editar Perfil</a>
+        <a href="/change-password" class="btn btn-verde">Cambiar Contraseña</a>
+        <a href="/profile-image" class="btn btn-amarillo">Imagen Perfil</a>
+    </div>
+
+    <div class="seccion-admin">
+        <h2>Próximos Eventos</h2>
+        <% if(events.length > 0 ) { %>
+        <ul>
+            <% events.forEach(event => { %>
+            <li>
+                <div class="informacion-admin">
+                    <% moment.locale('es'); %>
+                    <% const date = event.date +' '+ event.time;  %>
+                    <p class="fecha"><%= moment( date ).format('LLLL');  %> Horas</p>
+                    <a href="/event/<%= event.slug %>" target="_blank">
+                        <h3><%= event.title %></h3>
+                    </a>
+                    <small><%= event.attendees.length %> Interesados</small>
+                </div>
+                <div class="acciones contenedor-botones">
+                    <a href="/edit-event/<%= event.id %>" class="btn btn-verde">Editar</a>
+                    <a href="/attendees-event/<%= event.id %>" class="btn btn-azul2">Asistentes</a>
+                    <a href="/delete-event/<%= event.id %>" class="btn btn-rojo">Eliminar</a>
+                </div>
+            </li>
+            <% }) %>
+        </ul>
+        <% } else { %>
+            <p>Aún no tienes eventos creados</p>
+        <% } %>
+    </div>
+
+    <div class="seccion-admin">
+        <h2>Tus Grupos</h2>
+        <% if(groups.length ) { %>
+            <ul>
+                <% groups.forEach(group => { %>
+                <li>
+                    <div class="informacion-admin">
+                        <h3><%= group.name %></h3>
+                    </div>
+                    <div class="acciones contenedor-botones">
+                        <a href="/edit-group/<%= group.id %>" class="btn btn-verde">Editar</a>
+                        <a href="/group-image/<%= group.id %>" class="btn btn-azul2">Imagen</a>
+                        <a href="/delete-group/<%= group.id %>" class="btn btn-rojo">Eliminar</a>
+                    </div>
+                </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No tienes ningún grupo creado</p>
+        <% } %>
+    </div>
+
+
+    <div class="seccion-admin">
+        <h2>Eventos Anteriores</h2>
+        <% if(previous.length > 0 ) { %>
+        <ul>
+            <% previous.forEach(event => { %>
+            <li>
+                <div class="informacion-admin">
+                    <% moment.locale('es'); %>
+                    <% const date = event.date +' '+ event.time;  %>
+                    <p class="fecha"><%= moment( date ).format('LLLL');  %> Horas</p>
+                    <h3><%= event.title %></h3>
+                    <small><%= event.attendees.length %> Interesados</small>
+                </div>
+                <div class="acciones contenedor-botones">
+                    <a href="/edit-event/<%= event.id %>" class="btn btn-verde">Editar</a>
+                    <a href="/attendees-event/<%= event.id %>" class="btn btn-azul2">Asistentes</a>
+                    <a href="/delete-event/<%= event.id %>" class="btn btn-rojo">Eliminar</a>
+                </div>
+            </li>
+            <% }) %>
+        </ul>
+        <% } else { %>
+            <p>No tienes eventos anteriores</p>
+        <% } %>
+    </div>
+</main>

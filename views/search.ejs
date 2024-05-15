@@ -1,0 +1,12 @@
+<div class="contenedor">
+    <h1><%= pageName %></h1>
+    <% if (eventList.length > 0 ) { %>
+    <div class="grid columnas-md-3 ">
+        <% eventList.forEach(event => { %>
+            <%- include ('partials/card-event.ejs', { event: event }) %>
+        <% }) %>
+    </div><!--grid-->
+    <% } else { %>
+        <p>No hay resultados</p>
+    <% } %>
+</div>

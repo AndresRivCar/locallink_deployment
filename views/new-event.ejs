@@ -1,0 +1,87 @@
+<main class="contenedor contenedor-formularios">
+    <h1><%- pageName %></h1>
+    <form action="/new-event" method="POST" class="default-form" >
+        <fieldset>
+            <fieldset><legend>Sobre el Evento</legend></fieldset>
+        </fieldset>
+        <div class="campo">
+            <label>Grupo</label>
+            <select name="groupId">
+                <option value="" disabled selected>-- Selecciona Grupo --</option>
+                <% if(groups.length > 0 )  { %>
+                    <% groups.forEach(group => {  %>
+                        <option value="<%= group.id %>"><%= group.name %></option>
+                    <% }) %>
+                <% } %>
+            </select>
+        </div>
+        <div class="campo">
+            <label>Titulo</label>
+            <input type="text" name="title" placeholder="Titulo Evento">
+        </div>
+        <div class="campo">
+            <label>Invitado</label>
+            <input type="text" name="guest" placeholder="Nombre Invitado o Ponente (si aplica)">
+        </div>
+        <div class="columnas-2 grid">
+            <div class="campo">
+                <label>Fecha</label>
+                <input type="date" name="date" placeholder="Fecha Evento">
+            </div>
+            <div class="campo">
+                <label>Hora</label>
+                <input type="time" name="time" placeholder="Hora Evento">
+            </div>
+        </div>
+        <div class="campo">
+            <label>Cupo</label>
+            <input type="number" min="1" name="capacity" placeholder="Cupo Evento (si aplica)">
+        </div>
+        <div class="campo descripcion">
+            <label>Descripción</label>
+            <div class="contenedor-editor">
+                <input type="hidden" id="x" name="description">
+                <trix-editor input="x"></trix-editor>
+            </div>
+        </div>
+
+        <fieldset>
+            <legend>Ubicación Evento</legend>
+        </fieldset>
+
+        <div class="campo buscador">
+            <label>Coloca la Dirección del Evento</label>
+            <input type="text" id="searchform" placeholder="Ubicación">
+        </div>
+        <small><strong>El asistente colocará una dirección estimada</strong></small>
+
+        <div class="campo mapa">
+            <div id="map"></div>
+        </div>
+        <strong><p class="informacion" style="text-align: center; font-weight: bold;">Mueve el Pin hacia el punto exacto en caso de ser necesario</p></strong>
+
+        <p class="informacion" style="text-align: center; font-weight: bold;">Confirma que los siguientes campos sean correctos:</p>
+
+        <div class="campo">
+            <label>Dirección</label>
+            <input type="text" id="address" name="address" placeholder="Dirección">
+        </div>
+        <div class="campo">
+            <label>Ciudad</label>
+            <input type="text" id="city" name="city" placeholder="Ciudad">
+        </div>
+        <div class="campo">
+            <label>Estado</label>
+            <input type="text" id="state" name="state" placeholder="Estado">
+        </div>
+        <div class="campo">
+            <label>País</label>
+            <input type="text" id="country" name="country" placeholder="País">
+        </div>
+            <input type="hidden" id="lat" name="lat">
+            <input type="hidden" id="lng" name="lng">
+        <div class="campo enviar">
+            <input type="submit" class="btn btn-rosa" value="Crear Evento">
+        </div>
+    </form>
+</main>

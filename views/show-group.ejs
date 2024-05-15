@@ -1,0 +1,39 @@
+<div class="contenedor">
+    <h1><%= pageName %></h1>
+    <div class="informacion-grupo">
+        <div class="grupo-contenido">
+            <div class="imagen grupo-imagen">
+                <% if(group.image) { %>
+                    <img src="/uploads/groups/<%= group.image %>" class="grupo-imagen__img">
+                <% } else { %>
+                    <img src="/img/event.jpg" class="grupo-imagen__img">
+                <% } %> 
+            </div>
+            <div class="texto grupo-texto">
+                <%- group.description %>
+                <% if(group.url) { %> 
+                    <a target="_blank" class="url" href="<%- group.url %>">Visita nuestro sitio web</a>
+                <% } %>
+            </div>
+        </div>
+        <div class="texto eventos-texto">
+            <% if(events.length > 0 ) { %>
+                <h2>Próximos Eventos</h2>
+                <ul class="lista-meetis">
+                    <% events.forEach(event => { %>
+                        <li>
+                            <div class="texto">
+                                <a href="/event/<%= event.slug %>">
+                                    <h3><%= event.title %></h3>
+                                    <% moment.locale('es'); %>
+                                    <% const date = event.date + ' ' + event.time; %>
+                                    <p class="fecha"><%= moment(date).format('LLLL') %> Horas</p>
+                                </a>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </div>
+    </div>
+</div>

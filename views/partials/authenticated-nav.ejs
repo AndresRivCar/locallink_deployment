@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App con animación de carga</title>
+  <style>
+    /* Estilos para el contenedor de la animación de carga */
+    .loader-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8); /* Fondo opaco */
+      border-radius: 10px;
+      padding: 40px; /* Aumenta el padding para hacer más alto el cuadro */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+      display: none; /* Por defecto oculto */
+      z-index: 1001; /* Asegura que esté por encima del círculo */
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3; /* Light grey */
+      border-top: 16px solid #0F4C5C; /* Azul */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite, pulse 2s ease-in-out infinite; /* Agregamos el efecto de pulso */
+      z-index: 1002; /* Asegura que esté por encima del cuadro */
+      position: absolute;
+      top: 140%;
+      left: 50%;
+      margin-top: -60px; /* Mitad de la altura */
+      margin-left: -60px; /* Mitad del ancho */
+    }
+
+    /* Animación de rotación */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Animación de pulso y rotación */
+    @keyframes pulse {
+      0% { transform: scale(0.9) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(180deg); }
+      100% { transform: scale(0.9) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Contenido de la aplicación -->
+  <div class="content">
+    <a href="/admin">Administración</a>
+    <a href="/new-group">Nuevo Grupo</a>
+    <a href="/new-event">Nuevo Evento</a>
+    <!--<a href="/recommendations" onclick="showLoader(event)">Recomendaciones</a>-->
+    <a href="/recommendations/<%= user.id %>" onclick="showLoader(event)">Recomendaciones</a>
+    <a href="/sign-off">Cerrar Sesión</a>
+  </div>
+
+  <!-- Contenedor de la animación de carga -->
+  <div class="loader-container" id="loader-container">
+    <p id="loadingMessage" style="display: none; font-size: 24px; color: #0F4C5C; font-weight: bold;">Estamos preparando las mejores recomendaciones para ti...</p>
+    <div class="loader" id="loader"></div>
+  </div>
+
+  <script>
+    // Función para mostrar la animación de carga
+    function showLoader(event) {
+      // Evita el comportamiento predeterminado del enlace
+      event.preventDefault();
+      // Muestra el mensaje de carga
+      document.getElementById("loadingMessage").style.display = "block";
+      // Muestra el contenedor de la animación de carga
+      document.getElementById("loader-container").style.display = "block";
+      // Muestra la animación de carga
+      document.getElementById("loader").style.display = "block";
+      // Redirige después de un breve retraso (simulado)
+      setTimeout(() => {
+        window.location.href = event.target.href;
+      }, 1000); // 1000 milisegundos = 1 segundo (ajusta según necesites)
+    }
+  </script>
+</body>
+</html>

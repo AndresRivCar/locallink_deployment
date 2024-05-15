@@ -1,0 +1,35 @@
+<div class="contenedor-recomendado">
+    <h1><%= pageName %></h1>
+    <% if (recommendedEvents.length > 0 ) { %>
+    <div class="grid columnas-md-3 cards-recomendados evento">
+        <% recommendedEvents.forEach(event => { %>
+            <div class="card-recomendado">
+                <% if(event.imageUrl) { %>
+                    <img src="<%= event.imageUrl %>">
+                <% } else { %>
+                    <img src="/img/event.jpg">
+                <% } %>
+                <div class="card-texto-recomendados">
+                    <p class="fecha">
+                        <img src="../img/icono-fecha.svg" alt="Icono de fecha">
+                        <%= event.date %>
+                    </p>
+                    <a href="<%= event.moreInfoLink %>" target="_blank">
+                        <h3><%= event.title %> </h3>
+                    </a>
+                    <p class="bottom-align">
+                        <img src="../img/icono-ubicacion2.svg" alt="Icono de hora">
+                        <%= event.address %>
+                    </p>
+                    <p class="bottom-align">
+                        <img src="../img/icono-categoria.svg" alt="Icono de categoria">
+                        <%= event.origin %>
+                    </p>
+                </div>
+            </div>
+        <% }) %>
+    </div><!--grid-->
+    <% } else { %>
+        <p>No hay recomendaciones</p>
+    <% } %>
+</div>

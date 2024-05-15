@@ -1,0 +1,29 @@
+<div class="card">
+    <% if(event.group.image) { %>
+        <img src="/uploads/groups/<%= event.group.image %>">
+    <% } else { %>
+        <img src="/img/event.jpg">
+    <% } %>
+    <div class="card-texto">
+        <% moment.locale('es') %>
+        <% const date = `${event.date} ${event.time}` %>
+        <p class="fecha"><%= moment(date).format('LLLL') %> Horas </p>
+        <a href="/event/<%= event.slug %>">
+            <h3><%= event.title %> </h3>
+        </a>
+        <div class="info-autor">
+            <% if(event.user.image ) { %>
+                <div class="imagen">
+                    <img class="imagen-perfil" src="/uploads/profiles/<%= event.user.image %>">
+                </div>
+            <% } else { %>
+                <div class="imagen"></div>
+            <% } %>
+            
+            <div class="informacion">
+                <p>Organizado por:</p>
+                <p class="autor"><%= event.user.name %></p>
+            </div>
+        </div>
+    </div>
+</div>

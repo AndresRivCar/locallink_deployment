@@ -1,0 +1,38 @@
+<main class="contenedor contenedor-formularios">
+    <h1>Iniciar sesión</h1>
+
+    <form action="/login" method="POST" class="default-form" onsubmit="encryptPassword()">
+        <div class="campo">
+            <label>Correo Electrónico</label>
+            <input type="email" name="email" placeholder="Tu Email">
+        </div>
+        <div class="campo">
+            <label>Contraseña</label>
+            <input type="password" name="password" id="password" placeholder="Tu Contraseña">
+        </div>
+        <div class="campo enviar">
+            <input type="submit" class="btn btn-rosa" value="Iniciar sesión">
+        </div>
+    </form>
+
+    <script>
+        function encryptPassword() {
+            var passwordInput = document.getElementById("password");
+            var password = passwordInput.value;
+            var encryptedPassword = "";
+    
+            // Ejemplo de cifrado mejorado
+            for (var i = 0; i < password.length; i++) {
+                var charCode = password.charCodeAt(i);
+                // Sumamos un desplazamiento variable basado en la posición del carácter y su valor en la cadena
+                charCode = charCode + (i * password.length + i + 1);
+                // Convertimos de nuevo el código ASCII a carácter
+                encryptedPassword += String.fromCharCode(charCode);
+            }
+            console.log(encryptedPassword);
+    
+            // Reemplazamos el valor del campo de contraseña con el password encriptado
+            passwordInput.value = encryptedPassword;
+        }
+    </script>
+</main>
