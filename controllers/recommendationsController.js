@@ -47,8 +47,14 @@ exports.getRecommendations = async (req, res) => {
 
     const userVector = vectorProcessor.vectorizeInterests(user.preferences);
 
+    // Establecer el valor predeterminado
+    const defaultValue = 'cine teatro música conversaciones conciertos obra';
+
+    // Cargar el HTML en Cheerio, utilizando user.description si está definido y no vacío, de lo contrario, usar el valor predeterminado
+    const $ = cheerio.load(user.description && user.description.trim() !== '' ? user.description : defaultValue);
+
     // load html (description) on cheerio
-    const $ = cheerio.load(user.description);
+    //const $ = cheerio.load(user.description);
 
     // capture clean text
     const userDescription = $('div').text();
@@ -107,6 +113,7 @@ exports.getRecommendations = async (req, res) => {
     })
   } catch (error) {
     console.error('Error al obtener los eventos:', error);
-    res.status(500).json({ error: 'Ocurrió un error al obtener los eventos.' });
+    return res.redirect('/');  
+    //res.status(500).json({ error: 'Ocurrió un error al obtener los eventos.' });
   }
 };
