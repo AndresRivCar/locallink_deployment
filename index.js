@@ -18,8 +18,8 @@ const db = require('./config/db');
     db.sync().then(() => console.log('Connected database')).catch((error) => console.log(error));
 
 // Dev variables
-//require('dotenv').config({path: 'variables.env'});
-require('dotenv').config();
+require('dotenv').config({ path: 'variables.env' });
+//require('dotenv').config();
 
 // Main application
 const app = express();
