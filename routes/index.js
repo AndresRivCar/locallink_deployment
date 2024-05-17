@@ -71,7 +71,7 @@ module.exports = function() {
      * @memberof module:routes
      * @param {function} eventsControllerFE.showAttendees - Controller for displaying attendees of a specific event.
      */
-    router.get('/attendees/:slug', eventsControllerFE.showAttendees);
+    router.get('/attendees-event/:slug', eventsControllerFE.showAttendees);
 
     /**
      * Route to add a comment to a specific event.
