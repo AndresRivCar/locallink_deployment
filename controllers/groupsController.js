@@ -71,6 +71,8 @@ exports.uploadImage = (req, res, next) => {
                 }
             } else if(error.hasOwnProperty('message')) {
                 req.flash('error', error.message);
+            } else {
+                req.flash('error', 'Se produjo un error al cargar la imagen');
             }
             res.redirect('back');
             return;
