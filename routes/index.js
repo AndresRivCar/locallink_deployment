@@ -53,7 +53,7 @@ module.exports = function() {
      * @memberof module:routes
      * @param {function} eventsControllerFE.showEvent - Controller for displaying details of a specific event.
      */
-    router.get('/event/:slug', eventsControllerFE.showEvent);
+    router.get('/event/:slug', eventsControllerFE.showEvent); 
 
     /**
      * Route to confirm assistance to a specific event.
